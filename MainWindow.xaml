@@ -8,7 +8,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Sidebar with navigation buttons -->
         <StackPanel Grid.Column="0" Background="#2C3E50" VerticalAlignment="Stretch">
             <Button Content="Submit New Claim" 
                     Foreground="White" Background="#34495E" 
@@ -26,7 +25,6 @@
                     Click="LogOut_Click"/> <!-- Event handler for log out -->
         </StackPanel>
 
-        <!-- Area to display the selected content -->
         <ContentControl Grid.Column="1" x:Name="MainContent" />
     </Grid>
 </Window>
