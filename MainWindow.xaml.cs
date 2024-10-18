@@ -1,4 +1,4 @@
-﻿using System.Windows;
+using System.Windows;
 using CMCS.Views;
 
 namespace CMCS
@@ -18,7 +18,12 @@ namespace CMCS
 
         private void ViewClaims_Click(object sender, RoutedEventArgs e)
         {
-            MainContent.Content = new LecturerClaims();
+            MainContent.Content = new LecturerClaims(); 
+        }
+
+        private void ViewCoordinatorManagerClaims_Click(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new CoordinatorManagerClaims();
         }
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
