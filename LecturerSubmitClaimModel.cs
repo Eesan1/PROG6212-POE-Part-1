@@ -1,5 +1,4 @@
 using System.ComponentModel;
-
 namespace CMCS.Models
 {
     public class LecturerSubmitClaimModel : INotifyPropertyChanged
@@ -7,6 +6,31 @@ namespace CMCS.Models
         private string? _totalHoursWorked;
         private string? _claimPeriod;
         private string? _uploadedDocument;
+        private double _claimAmount;
+        private const double HourlyRate = 50.0;
+        private string? _lecturerName;
+        private string? _lecturerSurname;
+        public int ClaimID { get; set; }
+
+        public string? LecturerName
+        {
+            get => _lecturerName;
+            set
+            {
+                _lecturerName = value;
+                OnPropertyChanged(nameof(LecturerName));
+            }
+        }
+
+        public string? LecturerSurname
+        {
+            get => _lecturerSurname;
+            set
+            {
+                _lecturerSurname = value;
+                OnPropertyChanged(nameof(LecturerSurname));
+            }
+        }
 
         public string? TotalHoursWorked
         {
@@ -15,6 +39,7 @@ namespace CMCS.Models
             {
                 _totalHoursWorked = value;
                 OnPropertyChanged(nameof(TotalHoursWorked));
+                CalculateClaimAmount();
             }
         }
 
@@ -37,6 +62,27 @@ namespace CMCS.Models
                 OnPropertyChanged(nameof(UploadedDocument));
             }
         }
+        public double ClaimAmount
+        {
+            get => _claimAmount;
+            set
+            {
+                _claimAmount = value;
+                OnPropertyChanged(nameof(ClaimAmount));
+            }
+        }
+        
+        public string Status
+        {
+            get => _status;
+            set
+            {
+                _status = value;
+                OnPropertyChanged(nameof(Status));
+            }
+        }
+        private string _status = "Pending";
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -45,6 +91,16 @@ namespace CMCS.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        
+        private void CalculateClaimAmount()
+        {
+            if (double.TryParse(TotalHoursWorked, out double hours))
+            {
+                ClaimAmount = hours * HourlyRate;
+            }
+            else
+            {
+                ClaimAmount = 0;
+            }
+        }
     }
 }
